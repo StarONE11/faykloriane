@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Kloriane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-top:#2b2350;
+    --sky-mid:#7a3d5e;
+    --sky-low:#e8683f;
+    --sun:#ffcf7e;
+    --sand:#fff3e4;
+    --ink:#231a2e;
+    --accent:#ff6b4a;
+    --accent-soft:#ffb88c;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Space Grotesk', sans-serif;
+    background:var(--sand);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  .display{font-family:'Fraunces', serif;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:640px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    background:linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 78%, #b8452f 100%);
+  }
+  .sun{
+    position:absolute;
+    left:50%;
+    top:52%;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff2cf, var(--sun) 60%, #ff9d5c 100%);
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 90px 20px rgba(255,180,110,0.45);
+    animation:rise 2.4s ease-out;
+  }
+  @keyframes rise{
+    from{ top:80%; opacity:0; }
+    to{ top:52%; opacity:1; }
+  }
+  .stars{
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 20%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 70% 15%, #fff, transparent),
+      radial-gradient(1px 1px at 40% 10%, #fff, transparent),
+      radial-gradient(1px 1px at 85% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 55% 8%, #fff, transparent),
+      radial-gradient(1px 1px at 10% 35%, #fff, transparent);
+    opacity:.5;
+  }
+  .ocean{
+    position:absolute; bottom:0; left:0; right:0; height:34%;
+    background:linear-gradient(180deg, rgba(27,20,40,0.0) 0%, #1c1330 60%, #140c22 100%);
+  }
+  .wave{
+    position:absolute; left:0; width:200%; height:60px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 Q150 0 300 30 T600 30 T900 30 T1200 30 V60 H0 Z' fill='%232b1c3f'/%3E%3C/svg%3E");
+    background-size:1200px 60px;
+    opacity:.6;
+    animation:drift 9s linear infinite;
+  }
+  .wave.w2{ bottom:-6px; animation-duration:14s; opacity:.4; }
+  .wave.w1{ bottom:6px; }
+  @keyframes drift{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-600px); }
+  }
+  .hero-copy{
+    position:relative;
+    z-index:2;
+    padding:0 8vw 9vh;
+    color:var(--sand);
+  }
+  .eyebrow{
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent-soft);
+    margin-bottom:1rem;
+  }
+  h1{
+    font-size:clamp(3rem, 9vw, 6.5rem);
+    font-weight:500;
+    line-height:.95;
+    letter-spacing:-.01em;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--sun);
+  }
+  .hero-sub{
+    margin-top:1.4rem;
+    max-width:34ch;
+    font-size:1.05rem;
+    line-height:1.55;
+    color:#f4e6da;
+    opacity:.9;
+  }
+  .scroll-hint{
+    position:absolute; bottom:24px; left:8vw; z-index:2;
+    color:var(--sand); opacity:.6; font-size:.8rem; letter-spacing:.15em; text-transform:uppercase;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .scroll-hint::after{
+    content:"↓"; animation:bob 1.6s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);}
+  }
+
+  /* ---------- INVITATION ---------- */
+  .invite{
+    max-width:640px;
+    margin:0 auto;
+    padding:12vh 7vw 8vh;
+  }
+  .invite p{
+    font-size:1.15rem;
+    line-height:1.75;
+    margin-bottom:1.3rem;
+    color:#3a2a44;
+  }
+  .invite p.lead{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--accent);
+    line-height:1.4;
+  }
+  .details{
+    margin:2.2rem 0;
+    padding:1.4rem 1.6rem;
+    background:#fff;
+    border-left:3px solid var(--accent);
+    border-radius:2px;
+  }
+  .details div{
+    display:flex;
+    justify-content:space-between;
+    font-size:.95rem;
+    padding:.35rem 0;
+    border-bottom:1px solid #f1e4d6;
+  }
+  .details div:last-child{ border-bottom:none; }
+  .details span:first-child{ color:#a08a94; letter-spacing:.05em; text-transform:uppercase; font-size:.72rem; }
+  .details span:last-child{ font-weight:500; }
+
+  /* ---------- RESPONSE ---------- */
+  .response{
+    background:var(--ink);
+    color:var(--sand);
+    padding:9vh 7vw 10vh;
+  }
+  .response h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:2rem;
+    margin-bottom:.6rem;
+    color:var(--sun);
+  }
+  .response .hint{
+    opacity:.65;
+    margin-bottom:2.2rem;
+    font-size:.95rem;
+  }
+  .choices{
+    display:flex;
+    gap:.75rem;
+    flex-wrap:wrap;
+    margin-bottom:1.6rem;
+  }
+  .choice{
+    flex:1 1 auto;
+    min-width:130px;
+    max-width:400px;
+    padding:.9rem 1rem;
+    border-radius:999px;
+    border:1.5px solid rgba(255,243,228,.25);
+    background:transparent;
+    color:var(--sand);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:.95rem;
+    cursor:pointer;
+    text-align:center;
+    transition: max-width 2.4s cubic-bezier(.65,0,.35,1),
+                min-width 2.4s cubic-bezier(.65,0,.35,1),
+                flex-grow 2.4s ease-in-out,
+                opacity 1.8s ease-in-out,
+                padding 2.2s ease-in-out,
+                margin 2.2s ease-in-out,
+                border-color .2s ease,
+                background .2s ease,
+                transform 2s ease-in-out,
+                font-size 2s ease-in-out;
+  }
+  .choice:hover{ border-color:var(--accent-soft); }
+  .choice.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--ink);
+    font-weight:600;
+  }
+  .choice.gone{
+    min-width:0;
+    max-width:0;
+    padding-left:0;
+    padding-right:0;
+    margin:0;
+    border-width:0;
+    opacity:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .choice.grown{
+    flex-grow:3;
+    transform:scale(1.06);
+    font-size:1.05rem;
+    font-weight:700;
+  }
+  textarea{
+    width:100%;
+    min-height:110px;
+    resize:vertical;
+    background:rgba(255,243,228,.06);
+    border:1.5px solid rgba(255,243,228,.2);
+    border-radius:12px;
+    padding:1rem 1.1rem;
+    color:var(--sand);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:.95rem;
+    line-height:1.5;
+    margin-bottom:1.4rem;
+  }
+  textarea::placeholder{ color:rgba(255,243,228,.4); }
+  textarea:focus, .choice:focus-visible, .submit:focus-visible{
+    outline:2px solid var(--accent-soft);
+    outline-offset:2px;
+  }
+  .submit{
+    width:100%;
+    padding:1.05rem;
+    border:none;
+    border-radius:999px;
+    background:linear-gradient(120deg, var(--accent), #ffa15c);
+    color:#231a2e;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:.02em;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .submit:hover{ transform:translateY(-2px); }
+  .note{
+    margin-top:1rem;
+    font-size:.8rem;
+    opacity:.5;
+    text-align:center;
+  }
+  footer{
+    text-align:center;
+    padding:2.5rem 0;
+    font-size:.75rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#c7a89a;
+    background:var(--sand);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .sun{ animation:none; }
+    .wave{ animation:none; }
+    .scroll-hint::after{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="stars"></div>
+    <div class="sun"></div>
+    <div class="ocean">
+      <div class="wave w1"></div>
+      <div class="wave w2"></div>
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">Samedi 29 août · Rafiti, Atilamonou</div>
+      <h1>Pour<br><em>Kloriane.</em></h1>
+      <p class="hero-sub">Je sais que t'es pas vraiment active sur Snap, donc cette fois j'ai fait un truc qui va etre difficile à ignorer </p>
+    </div>
+    <div class="scroll-hint">continue</div>
+  </section>
+
+  <section class="invite">
+    <p class="lead">Bon Kloriane,</p>
+
+    <p>Je te propose un truc simple : pas ce week-end, l'autre d'après — samedi 29, on se voit pour de vrai, à Rafiti. Première fois qu'on se rencontre en vrai, autant faire ça bien.</p>
+
+    <div class="details">
+      <div><span>Quoi</span><span>Notre 1ère vraie rencontre</span></div>
+      <div><span>Quand</span><span>Samedi 29 août</span></div>
+      <div><span>Où</span><span>Rafiti, Atilamonou</span></div>
+    </div>
+
+    <p>Réponds en dessous . </p>
+  </section>
+
+  <form class="response" id="reponse">
+    <h2>Alors, on y va ?</h2>
+    <p class="hint">Choisis une option et ajoute un mot si tu veux — ça m'arrivera directement.</p>
+
+    <div class="choices" id="choices">
+      <button type="button" class="choice" id="yes-btn" data-value="Oui, avec plaisir">Oui, avec plaisir</button>
+      <button type="button" class="choice" id="no-btn" data-value="Non perds pas ton temps avec moi">Non perds pas ton temps avec moi</button>
+    </div>
+
+    <textarea name="message" id="message" placeholder="Un petit mot pour lui (optionnel)…"></textarea>
+
+    <button type="submit" class="submit" id="send">Envoyer ma réponse</button>
+    <p class="note" id="status-note">Ta réponse me parviendra directement.</p>
+  </form>
+
+  <footer>Petit à petit l'oiseau fait son nid #FAYSAL</footer>
+
+<script>
+  const yesBtn = document.getElementById('yes-btn');
+  const noBtn = document.getElementById('no-btn');
+  const form = document.getElementById('reponse');
+  const sendBtn = document.getElementById('send');
+  const statusNote = document.getElementById('status-note');
+  let selected = null;
+
+  // Le bouton "Non" ne se sélectionne jamais : il rétrécit et disparaît,
+  // pendant que "Oui" grandit pour prendre toute la place.
+  noBtn.addEventListener('click', () => {
+    if(noBtn.classList.contains('gone')) return;
+    noBtn.classList.add('gone');
+    yesBtn.classList.add('grown');
+  });
+
+  yesBtn.addEventListener('click', () => {
+    yesBtn.classList.add('active');
+    selected = yesBtn.dataset.value;
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if(!selected){
+      statusNote.textContent = "Choisis d'abord \"Oui\" au-dessus ";
+      return;
+    }
+
+    const msg = document.getElementById('message').value.trim();
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Envoi en cours…";
+
+    try{
+      const res = await fetch("https://formsubmit.co/ajax/etendajoseph2020@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _subject: "Réponse de Kloriane — Rafiti, samedi 29 août",
+          reponse: selected,
+          message: msg || "(aucun message)"
+        })
+      });
+
+      if(res.ok){
+        sendBtn.textContent = "Envoyé ✓";
+        statusNote.textContent = "C'est parti ";
+      } else {
+        throw new Error("send failed");
+      }
+    } catch(err){
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Envoyer ma réponse";
+      statusNote.textContent = "Oups, ça n'est pas parti — réessaie.";
+    }
+  });
+</script>
+</body>
+</html>
